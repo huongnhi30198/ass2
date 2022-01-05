@@ -59,20 +59,28 @@ def bill(orders, ls_cus, items, total, cus_id):
     :return: none
     """
     # Call function to print the customer info
+    print("* "*10)
     list_cus(ls_cus, cus_id)
     print("* " * 10)
 
     # Call function to print the product info
     print("product: ")
-    [list_item_info(items, k) for k, v in orders.items()]
+    for key in orders.keys():
+        print("ID book: ",key)
+        print("Name: ",items[key][0])
+        print("Quantity: ",orders[key]) # print the quantity of the book that the customer orders
+        print("Genre: ",items[key][2])
+        print("Price: ",items[key][3]*orders[key]) # calculation the total price of order book
+        print("* "*10)
+
 
     # Calculate and print shipping fee based on the customer address
     print("ship: {}".format(int(ls_cus[cus_id][-1]) * 15000))
 
-    # Calculate and print the total price customer have to pay
+    # Calculate and print the total price customer have to pay include the ship price
     print("total price: {}".format(total + int(ls_cus[cus_id][-1]) * 15000))
 
-    # Check the discount amount based on the customer rank
+    # Check the discount amount based on the customer rank (not include the ship price)
     discount = 0
     if ls_cus[cus_id][2] == "Gold":
         discount = total * 0.2

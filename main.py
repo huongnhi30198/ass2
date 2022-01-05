@@ -9,8 +9,6 @@ import list_customer_info
 # Read input file
 items_dict = file_IO.read_file_create_dict('item.txt')
 customers_dict = file_IO.read_file_create_dict('customer.txt')
-
-
 def print_menu():
     print(f'1. List all items \n'
           f'2. List all info of a specific item \n'
